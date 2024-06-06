@@ -40,7 +40,6 @@ cc_library_shared {
         "-DNN_COMPATIBILITY_LIBRARY_BUILD",
         "-fexceptions",
         "-fPIC",
-        "-std=c++17",
         "-Wall",
         "-fexceptions",
         "-Werror",
