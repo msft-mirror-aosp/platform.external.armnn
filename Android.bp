@@ -282,7 +282,6 @@ GPU_BACKEND_SOURCES = [
 ]
 
 ARMNN_CFLAGS = [
-    "-std=c++17",
     "-fexceptions",
     "-Wno-unused-parameter",
     "-DFMT_HEADER_ONLY",
