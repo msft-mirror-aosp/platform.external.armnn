@@ -314,18 +314,26 @@ license {
     ],
 }
 
+genrule {
+    name: "libarmnn_generated",
+    srcs: ["src/armnnSerializer/ArmnnSchema.fbs"],
+    out: ["ArmnnSchema_generated.h"],
+    cmd: "$(location flatc) --cpp -o $(genDir) $(in)",
+    tools: ["flatc"],
+}
+
 // cc_library_shared {
 cc_library_static {
     name: "libarmnn",
     rtti: true,
 
-	enabled : false,
+    enabled: false,
     arch: {
         arm: {
-            enabled : true,
+            enabled: true,
         },
         arm64: {
-            enabled : true,
+            enabled: true,
         },
     },
 
@@ -334,7 +342,6 @@ cc_library_static {
     ],
 
     local_include_dirs: [
-        "generated",
         "profiling",
         "profiling/common/include",
         "profiling/client/include",
@@ -348,6 +355,10 @@ cc_library_static {
         "src/backends",
         "src/armnnSerializer",
         "src/armnnDeserializer",
+    ],
+
+    generated_headers: [
+        "libarmnn_generated",
     ],
 
     include_dirs: [
@@ -366,9 +377,9 @@ cc_library_static {
 
     ldflags: ["-Wl,-Map=libarmnnMapFile.map"],
 
-	cflags: ARMNN_CFLAGS + [
+    cflags: ARMNN_CFLAGS + [
         "-DARMCOMPUTECL_ENABLED",
-	],
+    ],
 
-	srcs: ARMNN_SOURCES + COMMON_SOURCES + GPU_BACKEND_SOURCES,
+    srcs: ARMNN_SOURCES + COMMON_SOURCES + GPU_BACKEND_SOURCES,
 }
