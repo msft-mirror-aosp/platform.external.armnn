@@ -90,7 +90,7 @@ cc_prebuilt_library_shared {
     ],
     proprietary: true,
     vendor: true,
-    apex_available: ["//apex_available:vendor", "//apex_available:platform"],
+    apex_available: ["//apex_available:platform"],
     allow_undefined_symbols: true,
     target: {
         android_x86_64: {
@@ -165,7 +165,7 @@ cc_defaults {
         "libutils",
         "libarmnn_support_library_prebuilt",
     ],
-    apex_available: ["//apex_available:vendor", "//apex_available:platform"],
+    apex_available: ["//apex_available:platform"],
 }
 
 cc_defaults {
